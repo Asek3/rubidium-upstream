@@ -130,6 +130,10 @@ public class FluidRenderer {
 
         Sprite[] sprites = ForgeHooksClient.getFluidSprites(world, blockPos, fluidState);
 
+        if (sprites[2] == null) {
+            sprites[2] = sprites[0];
+        }
+        
         float fluidHeight = this.fluidHeight(world, fluid, blockPos, Direction.UP);
         float northWestHeight, southWestHeight, southEastHeight, northEastHeight;
         if (fluidHeight >= 1.0f) {

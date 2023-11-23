@@ -330,8 +330,11 @@ public class FluidRenderer {
                     BlockPos adjPos = this.scratchPos.set(adjX, adjY, adjZ);
                     BlockState adjBlock = world.getBlockState(adjPos);
 
+                    if (adjBlock.shouldDisplayFluidOverlay(world, adjPos, fluidState) || (SodiumClientMod.fabricApiLoaded && FluidRenderHandlerRegistry.INSTANCE.isBlockTransparent(adjBlock.getBlock()))) {
                     if (sprites[2] != null && adjBlock.shouldDisplayFluidOverlay(world, adjPos, fluidState) || (SodiumClientMod.fabricApiLoaded && FluidRenderHandlerRegistry.INSTANCE.isBlockTransparent(adjBlock.getBlock()))) {
                         sprite = sprites[2];
+                        if(sprite != null)
+                            isOverlay = true;
                         isOverlay = true;
                     }
                 }
